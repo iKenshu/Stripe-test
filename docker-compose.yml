@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+    db:
+        image: mysql:5.7.22
+        expose:
+            - "3306"
+        environment:
+            - MYSQL_USER=root
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=stripe-test
+            - MYSQL_PASSWORD=root
+    web:
+        build: .
+        command: python /code/manage.py migrate --noinput
+        command: python /code/manage.py runserver 0.0.0.0:8000
+        volumes:
+            - .:/code
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db
+        environment:
+            - DJANGO_SETTINGS_MODULE=config.settings
+            - SECRET_KEY=${SECRET_KEY}
+            - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+            - STRIPE_PUBLIC_KEY=${STRIPE_PUBLIC_KEY}
