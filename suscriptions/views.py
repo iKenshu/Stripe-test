@@ -46,17 +46,20 @@ class CustomerCreateView(CreateView):
 
 class CustomerLoginView(LoginView):
     """ Login Customers or Users """
+
     success_url = '/'
     template_name = 'suscriptions/customer_login.html'
 
 
 class CustomerLogoutView(LogoutView):
     """ Logout Customers or Users """
+
     pass
 
 
 class SubscriptionView(TemplateView):
     """ Index view with subscriptions plans """
+
     template_name = 'suscriptions/suscriptions.html'
 
 
