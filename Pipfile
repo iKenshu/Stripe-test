@@ -7,7 +7,7 @@ name = "pypi"
 python_version = "3.7"
 
 [packages]
-django = "==1.11.15"
+django = "==1.11.23"
 stripe = "*"
 mysqlclient = "*"
 
